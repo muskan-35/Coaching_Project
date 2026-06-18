@@ -5,8 +5,8 @@ import Courses from "./Pages/Courses"
 import CoursesDetails from "./Components/Courses/CoursesDetails"
 import About from "./Pages/About"
 import Blog from "./Pages/Blog"
-import Contact from "./Pages/Contact"
 import BlogDetails from "./Pages/BlogDetails"
+import Contact from "./Pages/Contact"
 import Placements from "./Pages/Placements"
 import Faq from "./Pages/Faq"
 import Reviews from "./Pages/Reviews"
@@ -23,7 +23,7 @@ function App() {
           <Route path="/course/:id" element={<CoursesDetails />}/>
           <Route path="/about" element={<About />}/>
           <Route path="/blog" element={<Blog />}/>
-          <Route path="/blog/:id" element={<BlogDetails />}/>
+          <Route path="/blog/:id" element={<BlogDetails />} />
           <Route path="/contact" element={<Contact />}/>
           <Route path="/placements" element={<Placements />}/>
           <Route path="/reviews" element={<Reviews />}/>

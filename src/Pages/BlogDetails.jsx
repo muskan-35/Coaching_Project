@@ -1,38 +1,50 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { blogPosts } from '../Data/blogs';
+import { useParams } from "react-router-dom";
+import { blogs } from "../Data/BlogData";
 
-const BlogDetails = () => {
+function BlogDetails() {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const post = blogPosts.find(p => String(p.id) === String(id));
 
-  if (!post) {
+  const blog = blogs.find(
+    (item) => item.id === Number(id)
+  );
+
+  if (!blog) {
     return (
-      <div className="max-w-3xl mx-auto p-8">
-        <button className="mb-4 text-blue-600" onClick={() => navigate(-1)}>← Back</button>
-        <h2 className="text-2xl font-semibold">Post not found</h2>
-      </div>
+      <h2 className="text-center text-2xl mt-10">
+        Blog Not Found
+      </h2>
     );
   }
 
-  const paragraphs = post.content.split(/\n\s*\n/).filter(Boolean);
-
   return (
-    <div className="max-w-3xl mx-auto p-8">
-      <button className="mb-4 text-blue-600" onClick={() => navigate(-1)}>← Back</button>
-      <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
-      <p className="text-sm text-gray-500 mb-4">{post.date} • {post.author}</p>
-      {post.image && (
-        <img src={post.image} alt={post.title} className="w-full h-64 object-cover rounded mb-6" />
-      )}
-      <div className="prose max-w-none text-gray-800">
-        {paragraphs.map((p, i) => (
-          <p key={i}>{p}</p>
-        ))}
+    <section className="max-w-4xl mx-auto px-6 py-12">
+      
+      <img
+        src={blog.image}
+        alt={blog.title}
+        className="w-full h-96 object-cover rounded-xl"
+      />
+
+      <div className="mt-8">
+        <span className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm">
+          {blog.category}
+        </span>
+
+        <h1 className="text-4xl font-bold mt-4">
+          {blog.title}
+        </h1>
+
+        <p className="text-gray-500 mt-2">
+          {blog.date} • {blog.readTime}
+        </p>
+
+        <div className="mt-6 text-lg leading-8 text-gray-700">
+          {blog.content}
+        </div>
       </div>
-    </div>
+
+    </section>
   );
-};
+}
 
 export default BlogDetails;

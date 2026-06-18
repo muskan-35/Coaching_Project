@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+// blogs
+import { blogs } from "../../Data/BlogData";
+import BlogCards from "./BlogCards";
+import { Link } from "react-router-dom";
 
 function Hero() {
     const navigate = useNavigate();
@@ -88,6 +92,7 @@ function Hero() {
                 </div>
             </section>
 
+            {/* Popup */}
             {isModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-6">
                     <div className="w-full max-w-4xl overflow-hidden rounded-3xl bg-gradient-to-br from-violet-50 to-blue-50 shadow-2xl">
@@ -196,6 +201,32 @@ function Hero() {
                     </div>
                 </div>
             )}
+
+            {/* Blogs Section */}
+            <section className="max-w-7xl mx-auto px-5 py-16">
+                <h2 className="text-4xl font-bold text-center">
+                    Latest Blogs
+                </h2>
+
+                <p className="text-center text-gray-500 mt-3">
+                    Explore our latest learning resources and career insights.
+                </p>
+
+                <div className="grid md:grid-cols-3 gap-6 mt-10">
+                    {blogs.slice(0, 3).map((blog) => (
+                    <BlogCards key={blog.id} blog={blog} />
+                    ))}
+                </div>
+
+                <div className="flex justify-center mt-10">
+                    <Link
+                    to="/blog"
+                    className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
+                    >
+                    Explore All Articles →
+                    </Link>
+                </div>
+            </section>
         </>
     );
 }
