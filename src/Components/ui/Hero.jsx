@@ -1,5 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+// courses
+import Courses  from "../../Pages/Courses";
+
+
+// about section icons
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import SchoolIcon from '@mui/icons-material/School';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
+import PsychologyIcon from '@mui/icons-material/Psychology';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+
 // blogs
 import { blogs } from "../../Data/BlogData";
 import BlogCards from "./BlogCards";
@@ -36,6 +48,23 @@ function Hero() {
         });
         setSubmitted(true);
     };
+
+    // Top Company Data
+    const partners = [
+    { name: "Pearson", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-bDveeaCBnryu9nJ_gEZtIs_FobOizZxf3g&s" },
+    { name: "SAP", logo: "/images/partners/sap.png" },
+    { name: "Microsoft", logo: "/images/partners/microsoft.png" },
+    { name: "Google Cloud", logo: "/images/partners/google-cloud.png" },
+    { name: "AWS", logo: "/images/partners/aws.png" },
+    { name: "Kryterion", logo: "/images/partners/kryterion.png" },
+    { name: "ACT", logo: "/images/partners/act.png" },
+    { name: "LanguageCert", logo: "/images/partners/languagecert.png" },
+    { name: "Skills For English", logo: "/images/partners/skills-english.png" },
+    { name: "Salesforce", logo: "/images/partners/salesforce.png" },
+    { name: "Oracle", logo: "/images/partners/oracle.png" },
+    { name: "ISO", logo: "/images/partners/iso.png" },
+  ];
+
 
     return (
         <>
@@ -201,6 +230,156 @@ function Hero() {
                     </div>
                 </div>
             )}
+
+            {/* Courses Section */}
+            <section className="py-16">
+                <div className="text-center mb-10">
+                    <h2 className="text-3xl font-bold">Popular Courses</h2>
+                    <p className="text-slate-500 mt-2">Learn from our top rated courses</p>
+                </div>
+                
+                <Courses limit={3} /> {/* 3. Bas ye line important hai */}
+
+                <div className="text-center mt-10">
+                    <a href="/courses" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700">
+                        View All Courses →
+                    </a>
+                </div>
+            </section>
+
+            {/* About Section */}
+            <section className="max-w-7xl m-auto px-6 py-16 bg-white">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+                    {/* Left Side - Image */}
+                    <div className="relative">
+                        <img 
+                        src="https://t4.ftcdn.net/jpg/05/19/89/97/360_F_519899761_kH6DsNBvULXhoSN2MVil1IUsRpSTNxvC.jpg" 
+                        alt="Dev Tech Institute"
+                        className="rounded-2xl shadow-xl w-full h-[550px] object-cover"
+                        />
+                    </div>
+
+                    {/* Right Side - Text */}
+                    <div>
+                        <span className="text-blue-600 font-semibold uppercase">Why Dev Tech</span>
+                        <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
+                            Built for <span className="text-blue-600">Job-Ready Learning</span>
+                        </h2>
+                        <p className="text-slate-600 mb-8">
+                            Dev Tech delivers practical, career-focused training with mentorship, live projects, and deep placement support so learners become job-ready with confidence.
+                        </p>
+
+                        {/* Features with Icons */}
+                        <div className="space-y-5">
+                            
+                            {/* Point 1 */}
+                            <div className="flex items-start gap-4">
+                                <div className="bg-blue-100 p-3 rounded-lg">
+                                    <VerifiedUserIcon className="text-blue-600" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg">100% Placement Assistance</h3>
+                                    <p className="text-slate-600 text-sm">Complete job support with resume building & interview prep</p>
+                                </div>
+                            </div>
+
+                            {/* Point 2 */}
+                            <div className="flex items-start gap-4">
+                                <div className="bg-green-100 p-3 rounded-lg">
+                                    <SchoolIcon className="text-green-600" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg">15+ Years Industry Expert Trainers</h3>
+                                    <p className="text-slate-600 text-sm">Learn from professionals with real industry experience</p>
+                                </div>
+                            </div>
+
+                            {/* Point 3 */}
+                            <div className="flex items-start gap-4">
+                                <div className="bg-purple-100 p-3 rounded-lg">
+                                    <AssignmentTurnedInIcon className="text-purple-600" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg">Hands-On Projects & Real-World Use Cases</h3>
+                                    <p className="text-slate-600 text-sm">Build portfolio with live projects used in companies</p>
+                                </div>
+                            </div>
+
+                            {/* Point 4 */}
+                            <div className="flex items-start gap-4">
+                                <div className="bg-orange-100 p-3 rounded-lg">
+                                    <PsychologyIcon className="text-orange-600" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg">AI-Personalized Learning Paths</h3>
+                                    <p className="text-slate-600 text-sm">Customized curriculum based on your learning speed</p>
+                                </div>
+                            </div>
+
+                            {/* Point 5 */}
+                            <div className="flex items-start gap-4">
+                                <div className="bg-pink-100 p-3 rounded-lg">
+                                    <AutoStoriesIcon className="text-pink-600" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg">40+ Industry-Relevant Courses</h3>
+                                    <p className="text-slate-600 text-sm">Wide range of tech courses updated with market trends</p>
+                                </div>
+                            </div>
+
+                            {/* Point 6 */}
+                            <div className="flex items-start gap-4">
+                                <div className="bg-yellow-100 p-3 rounded-lg">
+                                    <WorkspacePremiumIcon className="text-yellow-600" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg">Global Certifications</h3>
+                                    <p className="text-slate-600 text-sm">Get certified with industry-recognized credentials</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Top Company */}
+            <section className="max-w-7xl m-auto px-6 py-16 bg-white">
+            
+                {/* Top Text */}
+                <div className="text-center mb-12">
+                    <span className="text-blue-600 font-semibold uppercase">Our Certification Partners</span>
+                    <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-4">
+                        Globally <span className="text-blue-600">Recognized Certifications</span>
+                    </h2>
+                    <p className="text-slate-600 max-w-2xl mx-auto">
+                        Dev Tech is an authorized training partner with world's leading tech companies. Get certified with industry-recognized credentials that boost your career globally.
+                    </p>
+                </div>
+
+                {/* Partners Logo Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+                    {partners.map((partner, index) => (
+                    <div 
+                        key={index}
+                        className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-blue-300 hover:shadow-lg hover:bg-white transition-all duration-300 flex items-center justify-center h-28"
+                    >
+                        <img 
+                        src={partner.logo} 
+                        alt={partner.name}
+                        className="max-h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                        />
+                    </div>
+                    ))}
+                </div>
+
+                {/* Bottom Text */}
+                <div className="text-center mt-10">
+                    <p className="text-slate-500 text-sm">
+                    * All logos are trademarks of their respective owners
+                    </p>
+                </div>
+            </section>
 
             {/* Blogs Section */}
             <section className="max-w-7xl mx-auto px-5 py-16">
