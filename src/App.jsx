@@ -13,10 +13,13 @@ import Reviews from "./Pages/Reviews"
 import Footer from "./Components/Common/Footer"
 import Login from "./Pages/Login"
 
+import ScrollToTop from "./Components/Common/ScrollToTop";
+
 function App() {
   return (
     <div>
       <Navbar />
+      <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/courses" element={<Courses />}/>

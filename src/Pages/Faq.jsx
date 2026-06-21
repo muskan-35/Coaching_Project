@@ -1,38 +1,6 @@
 import { useState } from "react";
 import { ChevronDown, HelpCircle } from "lucide-react";
-
-const faqItems = [
-  {
-    question: "What courses do you offer?",
-    answer:
-      "We offer courses in Web Development, Data Science, UI/UX Design, Digital Marketing, and Software Testing.",
-  },
-  {
-    question: "How can I enroll in a batch?",
-    answer:
-      "To enroll, visit the Courses page, choose the program that matches your goals, and click the Apply or Enroll button.",
-  },
-  {
-    question: "Do you provide placement assistance?",
-    answer:
-      "Yes, we provide resume reviews, mock interviews, interview preparation, and career guidance.",
-  },
-  {
-    question: "Can I pay in installments?",
-    answer:
-      "Yes, installment plans are available for most programs.",
-  },
-  {
-    question: "Are the classes live or self-paced?",
-    answer:
-      "Our courses include live instructor-led sessions combined with self-paced assignments.",
-  },
-  {
-    question: "What if I miss a live class?",
-    answer:
-      "Recorded sessions are available, so you can learn at your convenience.",
-  },
-];
+import { faqData } from "../Data/FaqData";
 
 function Faq() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -70,52 +38,31 @@ function Faq() {
   };
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-16">
+     <section className="max-w-6xl mx-auto px-4 py-16">
       <div className="text-center mb-12">
-        <p className="text-blue-600 font-semibold uppercase tracking-wider">
-          FAQ
-        </p>
-
-        <h2 className="text-4xl font-bold text-gray-900 mt-2">
-          Frequently Asked Questions
-        </h2>
-
+        <p className="text-blue-600 font-semibold uppercase tracking-wider">FAQ</p>
+        <h2 className="text-4xl font-bold text-gray-900 mt-2">Frequently Asked Questions</h2>
         <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-          Find answers to common questions about courses, admissions,
-          payments, certificates, and placements.
+          Find answers to common questions about courses, admissions, payments, certificates, and placements.
         </p>
       </div>
 
       <div className="space-y-4">
-        {faqItems.map((item, index) => (
-          <div
-            key={index}
-            className="bg-white border border-gray-200 rounded-xl shadow-sm"
-          >
+        {faqData.map((item, index) => (
+          <div key={index} className="bg-white border border-gray-200 rounded-xl shadow-sm">
             <button
               onClick={() => toggleItem(index)}
               className="w-full flex items-center justify-between p-5 text-left"
             >
-              <span className="text-lg font-medium text-gray-900">
-                {item.question}
-              </span>
-
+              <span className="text-lg font-medium text-gray-900">{item.question}</span>
               <ChevronDown
                 size={22}
-                className={`transition-transform duration-300 ${
-                  openIndex === index ? "rotate-180" : ""
-                }`}
+                className={`transition-transform duration-300 ${openIndex === index? "rotate-180" : ""}`}
               />
             </button>
 
-            <div
-              className={`overflow-hidden transition-all duration-300 ${
-                openIndex === index ? "max-h-40" : "max-h-0"
-              }`}
-            >
-              <p className="px-5 pb-5 text-gray-600">
-                {item.answer}
-              </p>
+            <div className={`overflow-hidden transition-all duration-300 ${openIndex === index? "max-h-40" : "max-h-0"}`}>
+              <p className="px-5 pb-5 text-gray-600">{item.answer}</p>
             </div>
           </div>
         ))}

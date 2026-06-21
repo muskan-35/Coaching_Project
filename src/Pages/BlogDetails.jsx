@@ -1,8 +1,9 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { blogs } from "../Data/BlogData";
 
 function BlogDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const blog = blogs.find(
     (item) => item.id === Number(id)
@@ -18,7 +19,6 @@ function BlogDetails() {
 
   return (
     <section className="max-w-4xl mx-auto px-6 py-12">
-      
       <img
         src={blog.image}
         alt={blog.title}
@@ -41,8 +41,15 @@ function BlogDetails() {
         <div className="mt-6 text-lg leading-8 text-gray-700">
           {blog.content}
         </div>
-      </div>
 
+        {/* Back Button */}
+        <button
+          onClick={() => navigate("/blog")}
+          className="mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+        >
+          ← Back to Blogs
+        </button>
+      </div>
     </section>
   );
 }

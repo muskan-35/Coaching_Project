@@ -1,68 +1,8 @@
-import stu1 from "../assets/Reviews/1.png";
-import stu4 from "../assets/Reviews/4.png";
-import stu2 from "../assets/Reviews/2.png";
-import stu5 from "../assets/Reviews/5.png";
-import stu3 from "../assets/Reviews/3.png";
-import stu6 from "../assets/Reviews/6.png";
-
+import { reviewsData } from "../Data/ReviewsData";
+import { useNavigate } from "react-router-dom";
 
 function Reviews() {
-  const reviews = [
-    {
-      id: 1,
-      student: "Priya Sharma",
-      position: "Frontend Developer",
-      course: "Full-Stack Web Development",
-      img: stu1,
-      rating: 5,
-      text: "The mock interviews and mentor guidance helped me improve my communication and technical skills. I successfully cleared my first frontend developer interview."
-    },
-    {
-      id: 2,
-      student: "Aman Patel",
-      position: "Data Analyst",
-      course: "Data Science with Python",
-      img: stu4,
-      rating: 5,
-      text: "The interview preparation sessions covered real-world questions and boosted my confidence during placements."
-    },
-    {
-      id: 3,
-      student: "Neha Singh",
-      position: "UI/UX Designer",
-      course: "UI/UX Design Masterclass",
-      img: stu3,
-      rating: 5,
-      text: "I learned how to build projects, create a strong portfolio, and confidently present my work during interviews."
-    },
-    {
-      id: 2,
-      student: "Rahul Verma",
-      position: "React Developer",
-      course: "Frontend Development",
-      img: stu5,
-      rating: 5,
-      text: "The practical assignments and mock interviews prepared me well for technical rounds and helped me secure a job."
-    },
-    {
-      id: 3,
-      student: "Anjali Gupta",
-      position: "Software Engineer",
-      course: "Programming Fundamentals",
-      img: stu3,
-      rating: 5,
-      text: "The mentors were always available to help. The structured learning path made complex topics easy to understand."
-    },
-    {
-      id: 1,
-      student: "Vikash Kumar",
-      position: "Web Developer",
-      course: "Full-Stack Web Development",
-      img: stu6,
-      rating: 5,
-      text: "The career guidance sessions and resume reviews were extremely valuable and helped me stand out in interviews."
-    }
-  ];
+  const navigate = useNavigate();
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-16">
@@ -101,9 +41,9 @@ function Reviews() {
         </div>
       </div>
 
-      {/* Reviews Grid */}
+      {/* Reviews Grid - Yaha reviewsData kiya */}
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {reviews.map((review) => (
+        {reviewsData.map((review) => (
           <div
             key={review.id}
             className="border border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 bg-white"
@@ -111,7 +51,7 @@ function Reviews() {
             <i className="fa-solid fa-quote-left text-3xl text-violet-200 mb-4"></i>
 
             <div className="flex items-center gap-4 mb-5">
-              <div className="w-14 h-14 rounded-full overflow-hidden">
+              <div className="w-14 h-14 rounded-full overflow-hidden bg-slate-200">
                 <img
                   src={review.img}
                   alt={review.student}
@@ -150,7 +90,7 @@ function Reviews() {
         ))}
       </div>
     </section>
-  );
-}
+  ); // Ye add kiya
+} // Ye add kiya
 
 export default Reviews;

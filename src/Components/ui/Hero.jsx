@@ -17,6 +17,20 @@ import { blogs } from "../../Data/BlogData";
 import BlogCards from "./BlogCards";
 import { Link } from "react-router-dom";
 
+// placement data
+import { placementSteps } from "../../Data/PlacementData";
+//import { useNavigate } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+
+// Reviews
+import { reviewsData } from "../../Data/ReviewsData"
+//import { useNavigate } from "react-router-dom";
+
+// faq
+import { faqData } from "../../Data/FaqData";
+//import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+
 function Hero() {
     const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,20 +63,26 @@ function Hero() {
         setSubmitted(true);
     };
 
+    const [openIndex, setOpenIndex] = useState(null);
+    const toggleItem = (index) => {
+        setOpenIndex(openIndex === index? null : index);
+    };
+
+
     // Top Company Data
     const partners = [
-    { name: "Pearson", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-bDveeaCBnryu9nJ_gEZtIs_FobOizZxf3g&s" },
-    { name: "SAP", logo: "/images/partners/sap.png" },
-    { name: "Microsoft", logo: "/images/partners/microsoft.png" },
-    { name: "Google Cloud", logo: "/images/partners/google-cloud.png" },
-    { name: "AWS", logo: "/images/partners/aws.png" },
-    { name: "Kryterion", logo: "/images/partners/kryterion.png" },
-    { name: "ACT", logo: "/images/partners/act.png" },
-    { name: "LanguageCert", logo: "/images/partners/languagecert.png" },
-    { name: "Skills For English", logo: "/images/partners/skills-english.png" },
-    { name: "Salesforce", logo: "/images/partners/salesforce.png" },
-    { name: "Oracle", logo: "/images/partners/oracle.png" },
-    { name: "ISO", logo: "/images/partners/iso.png" },
+    { name: "Pearson", logo: "/logo/company/pearson.png" },
+    { name: "SAP", logo: "/logo/company/sap.png" },
+    { name: "Microsoft", logo: "/logo/company/micro.png" },
+    { name: "Google Cloud", logo: "/logo/company/google.png" },
+    { name: "AWS", logo: "/logo/company/aws.png" },
+    { name: "Kryterion", logo: "/logo/company/kryte.png" },
+    { name: "ACT", logo: "/logo/company/act.png" },
+    { name: "LanguageCert", logo: "/logo/company/langua.png" },
+    { name: "Skills For English", logo: "/logo/company/skills.png" },
+    { name: "Salesforce", logo: "/logo/company/sales.png" },
+    { name: "Oracle", logo: "/logo/company/oracle.png" },
+    { name: "ISO", logo: "/logo/company/iso.png" },
   ];
 
 
@@ -343,7 +363,33 @@ function Hero() {
                 </div>
             </section>
 
-            {/* Top Company */}
+            {/* Blogs Section */}
+            <section className="max-w-7xl mx-auto px-5 py-16">
+                <h2 className="text-4xl font-bold text-center">
+                    Latest Blogs
+                </h2>
+
+                <p className="text-center text-gray-500 mt-3">
+                    Explore our latest learning resources and career insights.
+                </p>
+
+                <div className="grid md:grid-cols-3 gap-6 mt-10">
+                    {blogs.slice(0, 3).map((blog) => (
+                    <BlogCards key={blog.id} blog={blog} />
+                    ))}
+                </div>
+
+                <div className="flex justify-center mt-10">
+                    <Link
+                    to="/blog"
+                    className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
+                    >
+                    Explore All Articles →
+                    </Link>
+                </div>
+            </section>
+
+            {/* Top Company Section */}
             <section className="max-w-7xl m-auto px-6 py-16 bg-white">
             
                 {/* Top Text */}
@@ -381,29 +427,145 @@ function Hero() {
                 </div>
             </section>
 
-            {/* Blogs Section */}
-            <section className="max-w-7xl mx-auto px-5 py-16">
-                <h2 className="text-4xl font-bold text-center">
-                    Latest Blogs
-                </h2>
-
-                <p className="text-center text-gray-500 mt-3">
-                    Explore our latest learning resources and career insights.
-                </p>
-
-                <div className="grid md:grid-cols-3 gap-6 mt-10">
-                    {blogs.slice(0, 3).map((blog) => (
-                    <BlogCards key={blog.id} blog={blog} />
-                    ))}
+            {/* Placements Section */}
+            <section className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
+      
+                {/* Top Content */}
+                <div className="text-center mb-16">
+                    <h2 className="text-4xl font-bold text-slate-900 mb-4">
+                    Start Your Placement Journey
+                    </h2>
+                    <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                    Our proven 6-step process has helped 500+ students get placed with 6+ LPA average package. Here's how we do it.
+                    </p>
                 </div>
 
-                <div className="flex justify-center mt-10">
-                    <Link
-                    to="/blog"
-                    className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
+                {/* Same Card Design - Only 3 Cards */}
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12">
+                    {placementSteps.slice(0, 3).map((item, index) => {
+                    const Icon = item.icon;
+
+                    return (
+                        <div
+                        key={index}
+                        className="group relative bg-white border border-slate-100 rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                        >
+                        {/* Step Badge */}
+                        <div
+                            className={`w-14 h-14 flex items-center justify-center rounded-xl text-white font-bold text-lg bg-gradient-to-r ${item.color} shadow-lg`}
+                        >
+                            {item.step}
+                        </div>
+
+                        {/* Icon */}
+                        <div className="mt-5">
+                            <Icon className="w-8 h-8 text-slate-700" />
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="text-xl font-bold text-slate-900 mt-5 group-hover:text-blue-600 transition">
+                            {item.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="text-slate-600 mt-3 text-sm leading-relaxed">
+                            {item.desc}
+                        </p>
+
+                        {/* Hover Line */}
+                        <div className="mt-5 h-1 w-0 group-hover:w-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 rounded-full"></div>
+                        </div>
+                    );
+                    })}
+                </div>
+
+                {/* View All Button */}
+                <div className="text-center">
+                    <button
+                    onClick={() => navigate('/placements')}
+                    className="rounded-lg bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 font-semibold transition duration-300"
                     >
-                    Explore All Articles →
-                    </Link>
+                    View All Steps →
+                    </button>
+                </div>
+
+            </section>
+
+            {/* Reviews Section */}
+            <section className="max-w-7xl mx-auto px-6 py-16">
+                <div className="text-center mb-12">
+                <p className="text-violet-600 font-bold uppercase tracking-widest">
+                    Student Reviews
+                </p>
+                <h2 className="text-3xl md:text-4xl font-bold mt-4">
+                    What Our Students Say
+                </h2>
+                </div>
+
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12">
+                {reviewsData.slice(0, 3).map((review) => (
+                    <div
+                    key={review.id}
+                    className="border border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 bg-white"
+                    >
+                    <i className="fa-solid fa-quote-left text-3xl text-violet-200 mb-4"></i>
+                    <div className="flex items-center gap-4 mb-5">
+                        <div className="w-14 h-14 rounded-full overflow-hidden">
+                        <img src={review.img} alt={review.student} className="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                        <h2 className="font-semibold text-lg">{review.student}</h2>
+                        <p className="text-green-600 text-sm font-medium">{review.position}</p>
+                        <div className="flex items-center gap-1 text-yellow-500 mt-1">
+                            {[...Array(review.rating)].map((_, index) => (
+                            <i key={index} className="fa-solid fa-star"></i>
+                            ))}
+                        </div>
+                        </div>
+                    </div>
+                    <p className="text-slate-600 leading-7">{review.text}</p>
+                    </div>
+                ))}
+                </div>
+
+                <div className="text-center">
+                <button
+                    onClick={() => navigate('/reviews')}
+                    className="rounded-lg bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 font-semibold transition"
+                >
+                    View All Reviews →
+                </button>
+                </div>
+            </section>
+
+            {/* Faq */}
+            <section className="max-w-6xl mx-auto px-4 py-16">
+                <div className="text-center mb-12">
+                    <p className="text-blue-600 font-semibold uppercase tracking-wider">FAQ</p>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
+                    Common Questions
+                    </h2>
+                </div>
+
+                <div className="space-y-4 max-w-3xl mx-auto">
+                    {faqData.slice(0, 5).map((item, index) => (
+                    <div key={index} className="bg-white border border-gray-200 rounded-xl shadow-sm">
+                        <button
+                        onClick={() => toggleItem(index)}
+                        className="w-full flex items-center justify-between p-5 text-left"
+                        >
+                        <span className="text-lg font-medium text-gray-900">{item.question}</span>
+                        <ChevronDown
+                            size={22}
+                            className={`transition-transform duration-300 ${openIndex === index? "rotate-180" : ""}`}
+                        />
+                        </button>
+
+                        <div className={`overflow-hidden transition-all duration-300 ${openIndex === index? "max-h-40" : "max-h-0"}`}>
+                        <p className="px-5 pb-5 text-gray-600">{item.answer}</p>
+                        </div>
+                    </div>
+                    ))}
                 </div>
             </section>
         </>

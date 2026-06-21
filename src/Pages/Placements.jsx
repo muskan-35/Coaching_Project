@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FileText, Code, Mic, Briefcase, Search, GraduationCap } from "lucide-react";
+import { placementSteps } from "../Data/PlacementData.jsx";
 
 function Placements(){
     const navigate = useNavigate();
@@ -12,51 +12,6 @@ function Placements(){
     const closeModal = () => setIsModalOpen(false);
     const handleChange = (e) => { const { name, value } = e.target; setFormData(prev => ({ ...prev, [name]: value })); };
     const handleSubmit = (e) => { e.preventDefault(); setFormData({ name: '', phone: '', course: '' }); setSubmitted(true); };
-
-    const steps = [
-  {
-    step: "01",
-    title: "Profile Assessment",
-    desc: "We analyze your skills, strengths, and career goals.",
-    icon: <Search className="w-8 h-8 text-blue-600" />,
-    color: "from-blue-500 to-blue-600"
-  },
-  {
-    step: "02",
-    title: "Resume Optimization",
-    desc: "Build ATS-friendly professional resume.",
-    icon: <FileText className="w-8 h-8 text-indigo-600" />,
-    color: "from-indigo-500 to-indigo-600"
-  },
-  {
-    step: "03",
-    title: "Skill Development",
-    desc: "Learn DSA, React, System Design.",
-    icon: <Code className="w-8 h-8 text-purple-600" />,
-    color: "from-purple-500 to-purple-600"
-  },
-  {
-    step: "04",
-    title: "Mock Interviews",
-    desc: "Real interview practice sessions.",
-    icon: <Mic className="w-8 h-8 text-green-600" />,
-    color: "from-green-500 to-green-600"
-  },
-  {
-    step: "05",
-    title: "Company Preparation",
-    desc: "Prepare for FAANG & product companies.",
-    icon: <GraduationCap className="w-8 h-8 text-orange-600" />,
-    color: "from-orange-500 to-orange-600"
-  },
-  {
-    step: "06",
-    title: "Final Placement",
-    desc: "Get placed in top companies.",
-    icon: <Briefcase className="w-8 h-8 text-pink-600" />,
-    color: "from-pink-500 to-pink-600"
-  },
-];
 
     return(
         <>
@@ -96,80 +51,50 @@ function Placements(){
                 </section>
 
                 {/* placement cards */}
-               <section className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
-  
-  <h2 className="text-4xl font-bold text-center text-slate-900 mb-16">
-    Our Complete Placement Journey
-  </h2>
+                <section className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
+                    <h2 className="text-4xl font-bold text-center text-slate-900 mb-16">
+                        Our Complete Placement Journey
+                    </h2>
 
-  <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                        {placementSteps.map((item, index) => {
+                        const Icon = item.icon;
 
-    {[
-      {
-        step: "01",
-        title: "Profile Assessment",
-        desc: "We analyze your skills, strengths, and career goals to create a personalized roadmap.",
-        color: "from-blue-500 to-blue-600"
-      },
-      {
-        step: "02",
-        title: "Resume Optimization",
-        desc: "Build ATS-friendly resume with keywords used by top tech companies.",
-        color: "from-indigo-500 to-indigo-600"
-      },
-      {
-        step: "03",
-        title: "Skill Development",
-        desc: "Training in DSA, React, System Design & real-world project building.",
-        color: "from-purple-500 to-purple-600"
-      },
-      {
-        step: "04",
-        title: "Mock Interviews",
-        desc: "Real interview simulations with industry experts and feedback sessions.",
-        color: "from-green-500 to-green-600"
-      },
-      {
-        step: "05",
-        title: "Company Preparation",
-        desc: "Company-specific preparation for FAANG and product-based companies.",
-        color: "from-orange-500 to-orange-600"
-      },
-      {
-        step: "06",
-        title: "Final Placement",
-        desc: "Get connected with hiring partners and crack your dream job.",
-        color: "from-pink-500 to-pink-600"
-      },
-    ].map((item, index) => (
-      <div
-        key={index}
-        className="group relative bg-white border border-slate-100 rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-      >
+                        return (
+                            <div
+                            key={index}
+                            className="group relative bg-white border border-slate-100 rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                            >
+                            {/* Step Badge */}
+                            <div
+                                className={`w-14 h-14 flex items-center justify-center rounded-xl text-white font-bold text-lg bg-gradient-to-r ${item.color} shadow-lg`}
+                            >
+                                {item.step}
+                            </div>
 
-        {/* Step Badge */}
-        <div
-          className={`w-14 h-14 flex items-center justify-center rounded-xl text-white font-bold text-lg bg-gradient-to-r ${item.color} shadow-lg`}
-        >
-          {item.step}
-        </div>
+                            {/* Icon */}
+                            <div className="mt-5">
+                                <Icon className="w-8 h-8 text-slate-700" />
+                            </div>
 
-        {/* Title */}
-        <h3 className="text-xl font-bold text-slate-900 mt-5 group-hover:text-blue-600 transition">
-          {item.title}
-        </h3>
+                            {/* Title */}
+                            <h3 className="text-xl font-bold text-slate-900 mt-5 group-hover:text-blue-600 transition">
+                                {item.title}
+                            </h3>
 
-        {/* Description */}
-        <p className="text-slate-600 mt-3 text-sm leading-relaxed">
-          {item.desc}
-        </p>
+                            {/* Description */}
+                            <p className="text-slate-600 mt-3 text-sm leading-relaxed">
+                                {item.desc}
+                            </p>
 
-        {/* Bottom line hover effect */}
-        <div className="mt-5 h-1 w-0 group-hover:w-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 rounded-full"></div>
-      </div>
-    ))}
-  </div>
-</section>
+                            {/* Hover Line */}
+                            <div className="mt-5 h-1 w-0 group-hover:w-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 rounded-full"></div>
+                            </div>
+                        );
+                        })}
+                    </div>
+                </section>
+
 
                 {/* CTA Placement Card */}
                 <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16">
