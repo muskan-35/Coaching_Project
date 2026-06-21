@@ -261,9 +261,9 @@ function Hero() {
                 <Courses limit={3} /> {/* 3. Bas ye line important hai */}
 
                 <div className="text-center mt-10">
-                    <a href="/courses" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700">
+                    <Link to="/courses" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700">
                         View All Courses →
-                    </a>
+                    </Link>
                 </div>
             </section>
 
